@@ -14,8 +14,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 from django.utils.safestring import mark_safe
 from django.core.cache import cache
-from django.utils.hashcompat import md5_constructor
 from django.utils.encoding import iri_to_uri
+try:
+    from django.utils.hashcompat import md5_constructor
+except ImportError:
+    from hashlib import md5 as md5_constructor
 
 from rollyourown.seo.utils import NotSet, Literal
 from rollyourown.seo.options import Options
